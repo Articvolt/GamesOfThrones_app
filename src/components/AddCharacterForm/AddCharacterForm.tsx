@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Character } from '../../models/Character.ts';
-
+import { FormContainer, StyledInput, StyledButton } from './styles.tsx';
 interface Props {
   onAddCharacter: (characterToAdd: Character) => void;
 }
@@ -27,9 +27,9 @@ export const AddCharacterForm = ({ onAddCharacter }: Props) => {
   };
 
   return (
-    <div>
+    <FormContainer>
       Name:
-      <input
+      <StyledInput
         type="text"
         value={characterToAdd.name || ''}
         onChange={(e) =>
@@ -40,9 +40,8 @@ export const AddCharacterForm = ({ onAddCharacter }: Props) => {
         }
         ref={nameInputRef}
       />
-      <br />
-      Image URL:{' '}
-      <input
+      Image URL:
+      <StyledInput
         type="text"
         value={characterToAdd.imageUrl || ''}
         onChange={(e) =>
@@ -51,10 +50,9 @@ export const AddCharacterForm = ({ onAddCharacter }: Props) => {
             imageUrl: e.target.value,
           })
         }
-      />{' '}
-      <br />
-      Title:{' '}
-      <input
+      />
+      Title:
+      <StyledInput
         type="text"
         value={characterToAdd.title || ''}
         onChange={(e) =>
@@ -64,9 +62,8 @@ export const AddCharacterForm = ({ onAddCharacter }: Props) => {
           })
         }
       />
-      <br />
-      Family:{' '}
-      <input
+      Family:
+      <StyledInput
         type="text"
         value={characterToAdd.family || ''}
         onKeyDown={(e) => {
@@ -79,9 +76,9 @@ export const AddCharacterForm = ({ onAddCharacter }: Props) => {
           })
         }
       />
-      <br />
-      <br />
-      <button onClick={() => onAddCharacterClick()}>Add character</button>
-    </div>
+      <StyledButton onClick={() => onAddCharacterClick()}>
+        Add character
+      </StyledButton>
+    </FormContainer>
   );
 };

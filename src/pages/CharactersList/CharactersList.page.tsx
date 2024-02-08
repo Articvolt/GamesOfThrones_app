@@ -1,7 +1,14 @@
+// CharactersList.jsx ou CharactersList.tsx
 import { useContext } from 'react';
 import { AddCharacterForm } from '../../components/AddCharacterForm/AddCharacterForm.tsx';
 import { CharactersContext } from '../../contexts/CharactersContext.ts';
 import { useNavigate } from 'react-router-dom';
+import {
+  Title,
+  StyledList,
+  ListItem,
+  CharacterImage,
+} from './assets/styles.tsx'; // Ajustez le chemin d'importation selon votre structure de dossiers
 
 export const CharactersList = () => {
   const { charactersList, addCharacter } = useContext(CharactersContext);
@@ -9,24 +16,19 @@ export const CharactersList = () => {
 
   return (
     <>
-      <h1>Game of thrones Characters</h1>
+      <Title>Game of Thrones Characters</Title>
       <AddCharacterForm onAddCharacter={addCharacter} /> <br />
-      <br />
-      <ul>
+      <StyledList>
         {charactersList.map((character) => (
-          <li
+          <ListItem
             onClick={() => navigate('/character/' + character.id)}
             key={character.id}
           >
+            <CharacterImage alt={character.name} src={character.imageUrl} />
             {character.id}) <b>{character.name}</b>
-            <img
-              alt={character.name}
-              src={character.imageUrl}
-              style={{ maxWidth: '100px' }}
-            />
-          </li>
+          </ListItem>
         ))}
-      </ul>
+      </StyledList>
     </>
   );
 };

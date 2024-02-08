@@ -1,4 +1,5 @@
 import { Character } from '../../models/Character.ts';
+import { DetailsContainer, CharacterImage, CharacterInfo } from './styles.tsx';
 
 interface Props {
   character: Character;
@@ -6,16 +7,13 @@ interface Props {
 
 export const CharacterDetails = ({ character }: Props) => {
   return (
-    <div>
-      <img
-        alt={character.name}
-        src={character.imageUrl}
-        style={{ maxWidth: '200px' }}
-      />{' '}
-      <br />
-      {character.id})<b>{character.name}</b> <br />
-      Family: {character.family} <br />
-      Title: {character.title}
-    </div>
+    <DetailsContainer>
+      <CharacterImage alt={character.name} src={character.imageUrl} />
+      <CharacterInfo>
+        {character.id}) <b>{character.name}</b>
+      </CharacterInfo>
+      <CharacterInfo>Family: {character.family}</CharacterInfo>
+      <CharacterInfo>Title: {character.title}</CharacterInfo>
+    </DetailsContainer>
   );
 };
